@@ -7,10 +7,12 @@ import axios from "axios";
 */
 
 const URL = 'https://api.github.com/users/johnjx'
+const cards = document.querySelector("div.cards");
 
 axios.get(URL)
   .then(res => {
-    console.log(res.data)
+    const newCard = cardMaker(res.data);
+    cards.appendChild(newCard);
   })
   .catch(err => {
     console.log(err)
