@@ -48,7 +48,7 @@ const followersArray = [];
     Using DOM methods and properties, create and return the following markup:
 
     <div class="card">
-      <img src={image url of user} />
+      <img src={image url of user} /> 
       <div class="card-info">
         <h3 class="name">{users name}</h3>
         <p class="username">{users user name}</p>
@@ -62,6 +62,59 @@ const followersArray = [];
       </div>
     </div>
 */
+
+function cardMaker(dataObj) {
+  const profileCard = document.createElement("div");
+  profileCard.classList.add("card");
+
+  const userImage = document.createElement("img");
+  userImage.src = dataObj.avatar_url;
+  userImage.alt = "Image of the User"
+  profileCard.appendChild(userImage);
+
+  const cardInfo = document.createElement("div");
+  cardInfo.classList.add("card-info");
+  profileCard.appendChild(cardInfo);
+
+  const name = document.createElement("h3");
+  name.classList.add("name");
+  name.textContent = dataObj.name;
+  cardInfo.appendChild(name);
+
+  const userName = document.createElement("p");
+  userName.classList.add("username");
+  userName.textContent = dataObj.login;
+  cardInfo.appendChild(userName);
+
+  const userLocation = document.createElement("p");
+  userLocation.textContent = `Location: ${dataObj.location}`;
+  cardInfo.appendChild(userLocation);
+
+  const userPage = document.createElement("p");
+  userPage.textContent = "Profile:";
+  const pageLink = document.createElement("a");
+  pageLink.textContent = "Press Here";
+  pageLink.href = dataObj.html_url;
+  userPage.appendChild(pageLink);
+  cardInfo.appendChild(userPage);
+
+  const followers = document.createElement("p");
+  followers.textContent = `Follower: ${dataObj.followers}`;
+  cardInfo.appendChild(followers);
+
+  const following = document.createElement("p");
+  following.textContent = `Following: ${dataObj.following}`;
+  cardInfo.appendChild(following);
+
+  const bio = document.createElement("p");
+  bio.textContent = `Bio: ${dataObj.bio}`;
+  cardInfo.appendChild(bio);
+
+  return profileCard;
+
+}
+
+
 
 /*
   List of LS Instructors Github username's:
